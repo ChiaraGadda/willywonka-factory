@@ -7,17 +7,18 @@ public class App {
         Factory factory = new Factory(args);
 
         String nextOrder = null;
-        boolean status = true;
-        do {
-            System.out.println("Sono arrivati nuovi ordini?");
-            Scanner input = new Scanner(System.in);
-            nextOrder = input.nextLine();
-            if (nextOrder.compareTo("N")==0) {
-                System.out.println("Chiudo la fabbrica!");
-                status = false;
-            } else {
+        // boolean status = true;
+        try {
+            do {
+                System.out.println("Sono arrivati nuovi ordini?");
+                Scanner input = new Scanner(System.in);
+                nextOrder = input.nextLine();
                 factory.nuovoOrdine(Integer.parseInt(nextOrder));
-            }
-        } while (status);
+            } while (true);
+        } catch (NumberFormatException ex) {
+            System.out.print("non hai inserito un ordine valido...");
+        } finally {
+            System.out.println("chiudo la fabbrica");
+        }
     }
 }
